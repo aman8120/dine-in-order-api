@@ -32,10 +32,10 @@ build/
 ### VS Code ###
 .vscode/
 
- .gitattributes
- .mvn
-  mvnw
-  mvnw.cmd
+.gitattributes
+.mvn
+mvnw
+mvnw.cmd
 
 
 
