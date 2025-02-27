@@ -22,8 +22,6 @@ public class UserController {
 
         return ResponseBuilder.success(HttpStatus.CREATED, "User Created", user);
     }
-
-
-
+}
 
 }
