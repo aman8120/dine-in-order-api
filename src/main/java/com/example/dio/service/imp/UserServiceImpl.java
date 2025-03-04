@@ -11,6 +11,7 @@ import com.example.dio.model.Staff;
 import com.example.dio.model.User;
 import com.example.dio.repository.UserRepository;
 import com.example.dio.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,6 @@ public class UserServiceImpl implements UserService {
     public UserResponse registerUser(RegistrationRequest registrationRequest) {
 
         User user = this.createUserByRole(registrationRequest.getRole());
-
         userMapper.mapToUserEntity(registrationRequest, user);
         userRepository.save(user);
         return userMapper.mapToUserResponse(user);
@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
     public UserResponse updateUserById(long userId, UserRequest userRequest) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundByIdException("Failed to find user ,user not found by id"));
-
-        this.userMapper.mapToUserEntity(userRequest, user);
+        userMapper.mapToUserEntity(userRequest, user);
+        userRepository.save(user);
         return userMapper.mapToUserResponse(user);
 
         //______________________________________OLD CODE_______________________________________________________
