@@ -7,11 +7,11 @@ import com.example.dio.model.User;
 
 public interface UserService {
 
-   public UserResponse registerUser(RegistrationRequest user);
+    UserResponse registerUser(RegistrationRequest user);
 
-    public UserResponse findUserById(long id);
+    UserResponse findUserById(long id);
 
-   UserResponse updateUserById(long userId, UserRequest updatedUser);
+    UserResponse updateUserById(long userId, UserRequest updatedUser);
 
-   void deleteUserById(long userId);
+    void deleteUserById(long userId);
 }

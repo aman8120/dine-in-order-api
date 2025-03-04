@@ -30,7 +30,7 @@ public class User {
     private String password;
 
     @Column(name = "ph_no")
-    private long phno;
+    private String phNo;
 
     @Column(name = "create_at")
     private LocalDate createdAt;
