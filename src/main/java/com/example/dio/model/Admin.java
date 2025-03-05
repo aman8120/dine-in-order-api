@@ -10,6 +10,6 @@ import java.util.List;
 @Table(name = "adims")
 public class Admin extends User {
 
-    @OneToMany
+    @OneToMany(mappedBy = "admin")
     private List<Restaurant> restaurants;
 }
