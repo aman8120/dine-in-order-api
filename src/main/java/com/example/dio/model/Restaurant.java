@@ -27,7 +27,7 @@ public class Restaurant {
     private String address;
 
     @Column(name = "contact_number")
-    private long contactNumber;
+    private String contactNumber;
 
     @Column(name = "contact_email")
     private String contactEmail;
@@ -39,7 +39,8 @@ public class Restaurant {
     private LocalTime closesAt;
 
     @Column(name = "diet_type")
-    private DietType dietType;
+    @Enumerated(EnumType.STRING)
+    private List<DietType> dietTypes;
 
     @Column(name = "created_at")
     private LocalDate createdAt;
@@ -47,7 +48,7 @@ public class Restaurant {
     @Column(name = "last_modified_at")
     private LocalDate lastModifiedAt;
 
-    @ManyToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "restaurants", fetch = FetchType.EAGER)
     private List<CuisineType> cuisineTypes;
 
     @ManyToOne(fetch = FetchType.LAZY)
