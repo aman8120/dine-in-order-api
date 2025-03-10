@@ -2,6 +2,7 @@ package com.example.dio.controller;
 
 import com.example.dio.dto.request.FoodItemRequest;
 import com.example.dio.dto.response.FoodItemResponse;
+import com.example.dio.model.FoodItem;
 import com.example.dio.model.Restaurant;
 import com.example.dio.service.FoodItemService;
 import com.example.dio.util.ResponseBuilder;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -29,4 +32,5 @@ public class FoodItemController {
         return ResponseBuilder.success(HttpStatus.CREATED, "FoodItems Created", foodItemsResponse);
 
     }
+
 }
