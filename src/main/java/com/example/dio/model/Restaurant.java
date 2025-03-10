@@ -2,6 +2,7 @@ package com.example.dio.model;
 
 import com.example.dio.enums.DietType;
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,9 +49,15 @@ public class Restaurant {
     @Column(name = "last_modified_at")
     private LocalDate lastModifiedAt;
 
-    @ManyToMany(mappedBy = "restaurants", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<CuisineType> cuisineTypes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Admin admin;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<Tables> tables;
+
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    private List<FoodItem> foodItems;
 }
