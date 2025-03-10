@@ -15,12 +15,12 @@ public class RestaurantRequest {
 
     @NotEmpty(message = "Username cannot be null or blank")
     @NotBlank(message = "User name cannot be blank")
-    @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Username can only contains Alphabets, Number and Underscore")
+    @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Restaurant Name can only contains Alphabets, Number and Underscore")
     private String name;
 
     @NotEmpty(message = "Username cannot be null or blank")
     @NotBlank(message = "User name cannot be blank")
-    @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Username can only contains Alphabets, Number and Underscore")
+    @Pattern(regexp = "^[a-zA-Z0-9-]+$", message = "Address can only contains Alphabets, Number and Underscore")
     private String address;
 
     @NotNull(message = "Phone number cannot be Null")
