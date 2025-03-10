@@ -5,7 +5,7 @@ import com.example.dio.dto.response.FoodItemResponse;
 import com.example.dio.model.Restaurant;
 import jakarta.validation.Valid;
 
-public interface FoodItemsService {
+public interface FoodItemService {
 
     FoodItemResponse registerFoods(@Valid FoodItemRequest foodItemsRequest, Restaurant restaurantId);
 }

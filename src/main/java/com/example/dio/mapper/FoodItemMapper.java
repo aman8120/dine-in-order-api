@@ -7,7 +7,7 @@ import com.example.dio.model.FoodItem;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface FoodItemsMapper {
+public interface FoodItemMapper {
 
     FoodItem mapToFoodItemsEntity(FoodItemRequest foodItemsRequest);
 

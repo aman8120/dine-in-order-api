@@ -3,14 +3,14 @@ package com.example.dio.service.imp;
 import com.example.dio.dto.request.FoodItemRequest;
 import com.example.dio.dto.response.FoodItemResponse;
 import com.example.dio.exception.UserNotFoundByIdException;
-import com.example.dio.mapper.FoodItemsMapper;
+import com.example.dio.mapper.FoodItemMapper;
 import com.example.dio.model.CuisineType;
 import com.example.dio.model.FoodItem;
 import com.example.dio.model.Restaurant;
 import com.example.dio.repository.CuisineTypeRepository;
-import com.example.dio.repository.FoodItemsRepository;
+import com.example.dio.repository.FoodItemRepository;
 import com.example.dio.repository.RestaurantRepository;
-import com.example.dio.service.FoodItemsService;
+import com.example.dio.service.FoodItemService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,11 +20,11 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Transactional
-public class FoodItemsServiceImpl implements FoodItemsService {
-    private FoodItemsRepository foodItemsRepository;
+public class FoodItemServiceImpl implements FoodItemService {
+    private FoodItemRepository foodItemRepository;
     private RestaurantRepository restaurantRepository;
     private CuisineTypeRepository cuisineTypeRepository;
-    private FoodItemsMapper foodItemsMapper;
+    private FoodItemMapper foodItemsMapper;
 
     @Override
     public FoodItemResponse registerFoods(FoodItemRequest foodItemRequest, Restaurant restaurantId) {
@@ -37,8 +37,7 @@ public class FoodItemsServiceImpl implements FoodItemsService {
         foodItem.setCuisineType(cuisineType);
         foodItem.setRestaurant(existingRestaurant);
 
-        foodItemsRepository.save(foodItem);
-
+        foodItemRepository.save(foodItem);
 
         return foodItemsMapper.mapTOFoodItemsResponse(foodItem);
 
