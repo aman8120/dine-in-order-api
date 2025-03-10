@@ -51,7 +51,7 @@ public class UserController {
             The API Endpoint is used tp find user.
             The Endpoint requires the user to select one of the specified role among with the other details. 
             """, responses = {
-            @ApiResponse(responseCode = "200", description = "User Found",content = {
+            @ApiResponse(responseCode = "200", description = "User Found", content = {
                     @Content(schema = @Schema(implementation = UserResponse.class))
             }),
             @ApiResponse(responseCode = "404", description = "User Not Found", content = {
@@ -68,7 +68,7 @@ public class UserController {
             The API Endpoint is used tp update user.
             The Endpoint requires the user to select one of the specified role among with the other details. 
             """, responses = {
-            @ApiResponse(responseCode = "200", description = "User Found",content = {
+            @ApiResponse(responseCode = "200", description = "User Found", content = {
                     @Content(schema = @Schema(implementation = UserRequest.class))
             }),
             @ApiResponse(responseCode = "404", description = "User Not Found", content = {
