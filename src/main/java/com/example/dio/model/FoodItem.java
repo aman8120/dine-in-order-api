@@ -49,4 +49,7 @@ public class FoodItem {
 
     @ManyToOne
     private CuisineType cuisineType;
+
+    @ManyToMany
+    private List<Category> categories;
 }
