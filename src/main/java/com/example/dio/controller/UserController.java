@@ -51,7 +51,7 @@ public class UserController {
             The API Endpoint is used tp find user.
             The Endpoint requires the user to select one of the specified role among with the other details. 
             """, responses = {
-            @ApiResponse(responseCode = "200", description = "User Found",content = {
+            @ApiResponse(responseCode = "200", description = "User Found", content = {
                     @Content(schema = @Schema(implementation = UserResponse.class))
             }),
             @ApiResponse(responseCode = "404", description = "User Not Found", content = {
@@ -60,7 +60,7 @@ public class UserController {
     })
     public ResponseEntity<ResponseStructure<UserResponse>> findUserById(@PathVariable long userId) {
         UserResponse response = userService.findUserById(userId);
-        return ResponseBuilder.success(HttpStatus.OK, "User Found", response);
+        return ResponseBuilder.ok("User Found", response);
     }
 
     @PutMapping("/update/{userId}")
@@ -68,7 +68,7 @@ public class UserController {
             The API Endpoint is used tp update user.
             The Endpoint requires the user to select one of the specified role among with the other details. 
             """, responses = {
-            @ApiResponse(responseCode = "200", description = "User Found",content = {
+            @ApiResponse(responseCode = "200", description = "User Found", content = {
                     @Content(schema = @Schema(implementation = UserRequest.class))
             }),
             @ApiResponse(responseCode = "404", description = "User Not Found", content = {
@@ -85,7 +85,7 @@ public class UserController {
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<ResponseStructure<String>> deleteUserById(@PathVariable long userId) {
         userService.deleteUserById(userId);
-        return ResponseBuilder.success(HttpStatus.OK, "User Deleted ", "user");
+        return ResponseBuilder.ok( "User Deleted ", "user");
     }
 
 

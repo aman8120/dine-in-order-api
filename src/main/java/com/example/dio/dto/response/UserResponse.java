@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 public class UserResponse {
+
     public long userId;
     public String username;
     public UserRole role;

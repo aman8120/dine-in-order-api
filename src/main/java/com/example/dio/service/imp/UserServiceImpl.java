@@ -24,6 +24,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+    /**
+     * Registers a new user based on the provided role.
+     *
+     * @param registrationRequest The request containing user registration details.
+     * @return The response containing registered user details.
+     */
     @Override
     public UserResponse registerUser(RegistrationRequest registrationRequest) {
 
@@ -34,6 +40,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * Retrieves a user by their unique ID.
+     *
+     * @param userId The unique identifier of the user.
+     * @return The response containing user details if found.
+     * @throws UserNotFoundByIdException If the user is not found by the given ID.
+     */
     @Override
     public UserResponse findUserById(long userId) {
         User user = userRepository.findById(userId)
@@ -41,6 +54,14 @@ public class UserServiceImpl implements UserService {
         return userMapper.mapToUserResponse(user);
     }
 
+    /**
+     * Updates an existing user's details.
+     *
+     * @param userId     The unique identifier of the user to be updated.
+     * @param userRequest The request containing updated user information.
+     * @return The response containing updated user details.
+     * @throws UserNotFoundByIdException If the user is not found by the given ID.
+     */
     @Override
     public UserResponse updateUserById(long userId, UserRequest userRequest) {
         User user = userRepository.findById(userId)
@@ -60,6 +81,12 @@ public class UserServiceImpl implements UserService {
 //        }
     }
 
+    /**
+     * Deletes a user from the system by their unique ID.
+     *
+     * @param userId The unique identifier of the user to be deleted.
+     * @throws UserNotFoundByIdException If the user is not found by the given ID.
+     */
     @Override
     public void deleteUserById(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
@@ -70,7 +97,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
+    /**
+     * Creates a user instance based on the provided role.
+     *
+     * @param role The role of the user (ADMIN or STAFF).
+     * @return The newly created user instance.
+     * @throws RuntimeException If the provided role is invalid.
+     */
     private static User createUserByRole(UserRole role) {
         User user;
 
