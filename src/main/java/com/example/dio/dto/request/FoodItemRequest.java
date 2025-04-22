@@ -36,4 +36,11 @@ public class FoodItemRequest {
     @Size(min = 1, message = "There must be at least one cuisine type")
     private String cuisineType;
 
+    @NotNull(message = "Category cannot be null")
+    @Size(min = 1, message = "There must be at least one category")
+    private List<String> categories;
+
+
+
+
 }

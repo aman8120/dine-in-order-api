@@ -60,7 +60,7 @@ public class UserController {
     })
     public ResponseEntity<ResponseStructure<UserResponse>> findUserById(@PathVariable long userId) {
         UserResponse response = userService.findUserById(userId);
-        return ResponseBuilder.success(HttpStatus.OK, "User Found", response);
+        return ResponseBuilder.ok("User Found", response);
     }
 
     @PutMapping("/update/{userId}")
@@ -85,7 +85,7 @@ public class UserController {
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<ResponseStructure<String>> deleteUserById(@PathVariable long userId) {
         userService.deleteUserById(userId);
-        return ResponseBuilder.success(HttpStatus.OK, "User Deleted ", "user");
+        return ResponseBuilder.ok( "User Deleted ", "user");
     }
 
 
