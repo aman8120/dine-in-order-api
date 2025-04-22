@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tables")
 @Getter
@@ -29,5 +31,11 @@ public class Tables {
 
     @ManyToOne
     private Restaurant restaurant;
+
+    @OneToMany(mappedBy = "restaurantTable")
+    private List<CartItem> cartItems;
+
+    @OneToMany(mappedBy = "table")
+    private List<TableOrder> orders;
 
 }

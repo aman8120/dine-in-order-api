@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 
@@ -13,6 +18,7 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
+@EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +39,13 @@ public class User {
     private String phNo;
 
     @Column(name = "create_at")
+    @CreatedDate
     private LocalDate createdAt;
 
     @Column(name = "last_modified_at")
+    @LastModifiedDate
     private LocalDate lastModifiedAt;
+
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)

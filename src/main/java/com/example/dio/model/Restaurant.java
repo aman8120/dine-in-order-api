@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,6 +17,7 @@ import java.util.List;
 @Table(name = "restaurant")
 @Getter
 @Setter
+@EntityListeners(AuditingEntityListener.class)
 public class Restaurant {
 
     @Id
@@ -44,9 +48,11 @@ public class Restaurant {
     private List<DietType> dietTypes;
 
     @Column(name = "created_at")
+    @CreatedDate
     private LocalDate createdAt;
 
     @Column(name = "last_modified_at")
+    @LastModifiedDate
     private LocalDate lastModifiedAt;
 
     @ManyToMany(fetch = FetchType.EAGER)

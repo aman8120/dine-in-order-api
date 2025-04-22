@@ -5,6 +5,7 @@ import com.example.dio.dto.response.FoodItemResponse;
 import com.example.dio.exception.UserNotFoundByIdException;
 import com.example.dio.mapper.FoodItemMapper;
 
+import com.example.dio.model.Category;
 import com.example.dio.model.CuisineType;
 import com.example.dio.model.FoodItem;
 import com.example.dio.model.Restaurant;
@@ -16,6 +17,9 @@ import com.example.dio.service.FoodItemService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -39,6 +43,8 @@ public class FoodItemServiceImpl implements FoodItemService {
         foodItem.setCuisineType(cuisineType);
         foodItem.setRestaurant(existingRestaurant);
 
+        foodItem.setCategories(this.createNonExistingCategory(foodItem.getCategories()));
+
         foodItemRepository.save(foodItem);
 
         if (!existingRestaurant.getCuisineTypes().contains(cuisineType.getCuisineName())) {
@@ -51,9 +57,39 @@ public class FoodItemServiceImpl implements FoodItemService {
 
     }
 
+    @Override
+    public List<FoodItemResponse> findFoodItemsByCategories(List<String> categoryNames) {
+        long categoryCount = (long) categoryNames.size();
+        List<FoodItem> foodItems = foodItemRepository.findFoodItemsByCategoryNames(categoryNames, categoryCount);
+        return foodItems.stream()
+                .map(foodItemsMapper::mapTOFoodItemsResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FoodItemResponse> fetchAll(long restaurantId) {
+        List<FoodItem> foodItems = foodItemRepository.findByRestaurantId(restaurantId); // e correct method
+
+        return foodItems.stream()
+                .map(foodItemsMapper::mapTOFoodItemsResponse)
+                .collect(Collectors.toList());
+    }
+
     private CuisineType createCuisineIfNotExist(CuisineType cuisineType) {
 
         return cuisineTypeRepository.findById(cuisineType.getCuisineName())
-                        .orElseGet(() -> cuisineTypeRepository.save(cuisineType));
+                .orElseGet(() -> cuisineTypeRepository.save(cuisineType));
     }
+
+    private List<Category> createNonExistingCategory(List<Category> categories) {
+        return categories.stream()
+                .map(type -> categoryRepository.findById(type.getCategoryName())
+                        .orElseGet(() -> categoryRepository.save(type)))
+                .toList();
+    }
+
+
 }
+
+
+
